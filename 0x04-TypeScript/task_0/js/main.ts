@@ -1,4 +1,4 @@
-// Define an interface for Student
+// Define the Student interface
 interface Student {
   firstName: string;
   lastName: string;
@@ -8,32 +8,61 @@ interface Student {
 
 // Create two student objects
 const student1: Student = {
-  firstName: 'John',
-  lastName: 'Doe',
+  firstName: "John",
+  lastName: "Doe",
   age: 20,
-  location: 'New York',
+  location: "New York"
 };
 
 const student2: Student = {
-  firstName: 'Jane',
-  lastName: 'Smith',
+  firstName: "Jane",
+  lastName: "Smith",
   age: 22,
-  location: 'London',
+  location: "Los Angeles"
 };
 
-// Store students in an array
+// Create an array containing the students
 const studentsList: Student[] = [student1, student2];
 
-// Render a simple HTML table
-const table = document.createElement('table');
-const header = document.createElement('tr');
-header.innerHTML = '<th>First Name</th><th>Location</th>';
-table.appendChild(header);
+// Function to render table
+function renderTable(students: Student[]): void {
+  // Create table element
+  const table: HTMLTableElement = document.createElement("table");
+  table.style.borderCollapse = "collapse";
+  table.style.width = "50%";
 
-studentsList.forEach((student) => {
-  const row = document.createElement('tr');
-  row.innerHTML = `<td>${student.firstName}</td><td>${student.location}</td>`;
-  table.appendChild(row);
-});
+  // Create table header
+  const header: HTMLTableRowElement = document.createElement("tr");
+  const th1 = document.createElement("th");
+  th1.textContent = "First Name";
+  th1.style.border = "1px solid black";
+  const th2 = document.createElement("th");
+  th2.textContent = "Location";
+  th2.style.border = "1px solid black";
+  header.appendChild(th1);
+  header.appendChild(th2);
+  table.appendChild(header);
 
-document.body.appendChild(table);
+  // Append rows for each student
+  students.forEach((student) => {
+    const row: HTMLTableRowElement = document.createElement("tr");
+
+    const firstNameCell = document.createElement("td");
+    firstNameCell.textContent = student.firstName;
+    firstNameCell.style.border = "1px solid black";
+
+    const locationCell = document.createElement("td");
+    locationCell.textContent = student.location;
+    locationCell.style.border = "1px solid black";
+
+    row.appendChild(firstNameCell);
+    row.appendChild(locationCell);
+    table.appendChild(row);
+  });
+
+  // Append the table to the body
+  document.body.appendChild(table);
+}
+
+// Render the table
+renderTable(studentsList);
