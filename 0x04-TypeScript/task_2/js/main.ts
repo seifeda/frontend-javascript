@@ -55,9 +55,10 @@ console.log(createEmployee('$500')); // Director
 // ---------------- Task 6 ----------------
 
 // Type predicate for Director
-function isDirector(employee: Director | Teacher): employee is Director {
+export function isDirector(employee: Director | Teacher): employee is Director {
   return employee instanceof Director;
 }
+
 
 // Function to execute work based on type
 export function executeWork(employee: Director | Teacher): string {
@@ -67,7 +68,6 @@ export function executeWork(employee: Director | Teacher): string {
     return employee.workTeacherTasks();
   }
 }
-
 
 
 
